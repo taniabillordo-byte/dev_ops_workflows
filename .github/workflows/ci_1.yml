@@ -13,3 +13,5 @@ jobs:
         run: |
           echo ${{ steps.ip.outputs.ipv4 }}
           echo ${{ steps.ip.outputs.ipv6 }}
+      - name: Get Release
+        run: lsb_release -a
