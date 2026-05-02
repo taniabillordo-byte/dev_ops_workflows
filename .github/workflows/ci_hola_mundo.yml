@@ -1,5 +1,7 @@
 name: hola-mundo-node
-on: push
+on: 
+  push:
+    branches: ['fix/main']
 jobs:
   hola-mundo-node-jobs:
     runs-on: ubuntu-22.04
