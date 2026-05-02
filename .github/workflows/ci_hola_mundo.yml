@@ -1,0 +1,22 @@
+name: hola-mundo-node
+on: push
+jobs:
+  hola-mundo-node-jobs:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout del repositorio
+        uses: actions/checkout@v4
+      
+      - name: Configurar node.js     
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Ejecutar index.js
+        run: node index.js 
+
+      - name: Get Release
+        run: lsb_release -a
+        
+      - name: fecha server
+        run: echo $(date)
