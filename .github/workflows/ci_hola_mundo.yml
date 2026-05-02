@@ -11,12 +11,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
+      
+      - name: Verfiicar el node version
+        run: node --version
+        
       - name: Ejecutar index.js
         run: node index.js 
 
       - name: Get Release
         run: lsb_release -a
-        
+
       - name: fecha server
         run: echo $(date)
