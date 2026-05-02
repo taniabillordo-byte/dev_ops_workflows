@@ -4,5 +4,12 @@ jobs:
   hola-mundo-jobs:
     runs-on: ubuntu-latest
     steps:
-      - name: Saludar al mundo
+      - name: Saludar al mundo Step 1
         run: echo "Hola, mundo!"
+      - name: Public IP
+        id: ip
+        uses: haythem/public-ip@v1.3
+      - name: Print Public IP
+        run: |
+          echo ${{ steps.ip.outputs.ipv4 }}
+          echo ${{ steps.ip.outputs.ipv6 }}
