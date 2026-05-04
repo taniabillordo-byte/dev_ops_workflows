@@ -28,6 +28,8 @@ jobs:
     if: ${{ github.event_name == 'issues' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Correr script
+        run: echo ${{ inputs.nombre }} es mayor de edad
       - name: Mostrar nombre de evento
         run: echo ${{ github.event_name }}
       - name: Mostrar usuario
@@ -41,20 +43,26 @@ jobs:
       - name: Mostrar variable de entorno
         run: echo "Ambiente - ${{ env.AMBIENTE }} - ${{ env.REGION }}"
 
-  mayor: # <-- Alineado con tipo_issue
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.edad >= 18 }}
+  mayor:
+    if: ${{ inputs.edad >= 18 }}
     runs-on: ubuntu-latest
     steps:
       - name: Correr script
-        run: echo "${{ inputs.nombre }} es mayor de edad"
+        run: echo ${{ inputs.nombre }} es mayor de edad
       - name: Mostrar nombre de evento
         run: echo ${{ github.event_name }}
+      - name: Mostrar usuario
+        run: echo ${{ github.actor }} 
+      - name: Retorna Ref - Repository - Issue title
+        run: echo "${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}"
 
-  menor: # <-- Alineado con tipo_issue
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.edad < 18 }}
+  menor:
+    if: ${{ inputs.edad < 18 }}
     runs-on: ubuntu-latest
     steps:
       - name: Corrre script meno
-        run: echo "${{ inputs.nombre }} es menor de edad"
+        run: echo ${{ inputs.nombre }} es menor de edad
       - name: Que valor tiene el input
         run: echo "${{ inputs.nombre }} - ${{ inputs.edad }}"
+      - name: Retorna Ref - Repository - Issue title
+        run: echo "${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}"
