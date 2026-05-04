@@ -1,7 +1,9 @@
 name: hola-mundo-node
 on: 
   push:
-    branches: ['fix/main']
+    branches: ['fix/date']
+    paths:
+      - '** .js'
 jobs:
   hola-mundo-node-jobs:
     runs-on: ubuntu-22.04
