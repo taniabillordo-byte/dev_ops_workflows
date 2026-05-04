@@ -18,7 +18,9 @@ on:
     types:
       - closed
       - opened
-
+rnv:
+  AMBIENTE: produccion
+  REGION: us-east-1
 jobs:
   tipo_issue:
     if: ${{ github.event_name == 'issues' }}
@@ -36,7 +38,9 @@ jobs:
         run: echo "version=1.0.0" >> $GITHUB_OUTPUT
       - name: Mostrar version
         run: echo "Version ${{ steps.obtener_version.outputs.version }}"
-
+      - name: Mostrar variable de entorno
+        run: echo "Ambiente - ${{ env.AMBIENTE }} - ${{ env.REGION }}"
+        
   mayor:
     if: ${{ inputs.edad >= 18 }}
     runs-on: ubuntu-latest
@@ -50,7 +54,7 @@ jobs:
       - name: Retorna Ref - Repository - Issue title
         run: echo "${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}"
 
-  menor:
+ menor:
     if: ${{ inputs.edad < 18 }}
     runs-on: ubuntu-latest
     steps:
