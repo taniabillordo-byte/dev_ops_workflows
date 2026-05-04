@@ -27,7 +27,13 @@ jobs:
   tipo_issue:
     if: ${{ github.event_name == 'issues' }}
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: develoment
     steps:
+      - name: Definir variables
+        env:
+          MENSAJE: "Hola mundo"  
+        run: echo $MENSAJE
       - name: Correr script
         run: echo ${{ inputs.nombre }} es mayor de edad
       - name: Mostrar nombre de evento
