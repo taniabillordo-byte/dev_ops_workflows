@@ -12,9 +12,9 @@ on:
         required: true
         default: 30
         type: number
-push:
+  push:
     branches: ["main"]
-issues:
+  issues:
     types:
       - closed
       - opened
@@ -35,7 +35,7 @@ jobs:
       - id: obtener_version
         run: echo "version=1.0.0" >> $GITHUB_OUTPUT
       - name: Mostrar version
-        run: echo "Version: ${{ steps.obtener_version.outputs.version }}"
+        run: echo "Version ${{ steps.obtener_version.outputs.version }}"
 
   mayor:
     if: ${{ inputs.edad >= 18 }}
