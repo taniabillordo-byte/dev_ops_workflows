@@ -19,6 +19,18 @@ on:
       - closed
       - opened
 jobs:
+  tipo_issue:
+    if: ${{ github.event_name == 'issues' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Correr script
+        run: echo ${{ inputs.nombre }} es mayor de edad
+      - name: Mostrar nombre de evento
+        run: echo ${{ github.event_name }}
+      - name: Mostrar usuario
+        run: echo ${{ github.actor }} 
+      - name: Retorna Ref - Repository - Issue title
+        run: echo ${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}
   mayor:
     if: ${{ inputs.edad >= 18 }}
     runs-on: ubuntu-latest
