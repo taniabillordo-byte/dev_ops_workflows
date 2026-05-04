@@ -10,8 +10,8 @@ on:
       nombre:
         description: 'Nombre'
         required: true
-        default: 'Valor default'
-        type: string
+        default: 30
+        type: number
   push:
     branches: ["main"]
   issues:
