@@ -1,0 +1,20 @@
+name: Workflow-Manual
+
+on:
+  workflow_dispatch:
+    inputs:
+      alerta:
+        description: 'nivel'
+        required: true
+        default: "medio"
+        type: choice
+        options:
+          - "bajo"
+          - "medio"
+          - "alto"
+jobs:
+  ejecucion-manual:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Saludo
+        run: echo "Ejecución manual con nivel ${{ github.event.inputs.alerta }}"
