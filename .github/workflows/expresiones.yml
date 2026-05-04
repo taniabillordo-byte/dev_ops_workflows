@@ -18,7 +18,7 @@ on:
     types:
       - closed
       - opened
-rnv:
+env:
   AMBIENTE: produccion
   REGION: us-east-1
 jobs:
