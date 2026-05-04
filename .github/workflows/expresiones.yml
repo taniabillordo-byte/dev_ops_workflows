@@ -12,7 +12,8 @@ on:
         required: true
         default: 'Valor default'
         type: string
-
+  push:
+    branches: ["main"]
 jobs:
   mayor:
     if: ${{ inputs.edad >= 18 }}
