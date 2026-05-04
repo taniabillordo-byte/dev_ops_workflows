@@ -48,6 +48,8 @@ jobs:
         run: echo "Version ${{ steps.obtener_version.outputs.version }}"
       - name: Mostrar variable de entorno
         run: echo "Ambiente - ${{ env.AMBIENTE }} - ${{ env.REGION }}"
+      - name: Mostrar variable de entorno
+        run: echo "Home - ${{ env.HOME }}"
 
   mayor:
     if: ${{ inputs.edad >= 18 }}
