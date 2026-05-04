@@ -38,3 +38,7 @@ jobs:
     steps:
       - name: Corrre script meno
         run: echo ${{ inputs.nombre }} es menor de edad
+      - name: Que valor tiene el input
+        run: echo ${{ inputs.nombre }} - ${{ inputs.edad }}
+      - name: Retorna Ref - Repository - Issue title
+        run: echo ${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}
