@@ -14,6 +14,10 @@ on:
         type: string
   push:
     branches: ["main"]
+  issues:
+    types:
+      - closed
+      - opened
 jobs:
   mayor:
     if: ${{ inputs.edad >= 18 }}
@@ -24,7 +28,9 @@ jobs:
       - name: Mostrar nombre de evento
         run: echo ${{ github.event_name }}
       - name: Mostrar usuario
-        run: echo ${{ github.actor }}
+        run: echo ${{ github.actor }} 
+      - name: Retorna Ref - Repository - Issue title
+        run: echo ${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}
 
   menor:
     if: ${{ inputs.edad < 18 }}
