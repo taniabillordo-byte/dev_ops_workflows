@@ -10,47 +10,47 @@ on:
       nombre:
         description: 'Nombre'
         required: true
-        default: 30
-        type: number
+        default: 'Tania'
+        type: string
   push:
     branches: ["main"]
   issues:
     types:
       - closed
       - opened
+
 jobs:
   tipo_issue:
     if: ${{ github.event_name == 'issues' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Correr script
-        run: echo ${{ inputs.nombre }} es mayor de edad
       - name: Mostrar nombre de evento
         run: echo ${{ github.event_name }}
       - name: Mostrar usuario
         run: echo ${{ github.actor }} 
       - name: Retorna Ref - Repository - Issue title
-        run: echo ${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}
+        run: echo "${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}"
+      - id: obtener_version
+        run: echo "version=1.0.0" >> $GITHUB_OUTPUT
+      - name: Mostrar version
+        run: echo "Version ${{ steps.obtener_version.outputs.version }}"
+
   mayor:
-    if: ${{ inputs.edad >= 18 }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.edad >= 18 }}
     runs-on: ubuntu-latest
     steps:
       - name: Correr script
-        run: echo ${{ inputs.nombre }} es mayor de edad
+        run: echo "${{ inputs.nombre }} es mayor de edad"
       - name: Mostrar nombre de evento
         run: echo ${{ github.event_name }}
       - name: Mostrar usuario
         run: echo ${{ github.actor }} 
-      - name: Retorna Ref - Repository - Issue title
-        run: echo ${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}
 
   menor:
-    if: ${{ inputs.edad < 18 }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.edad < 18 }}
     runs-on: ubuntu-latest
     steps:
       - name: Corrre script meno
-        run: echo ${{ inputs.nombre }} es menor de edad
+        run: echo "${{ inputs.nombre }} es menor de edad"
       - name: Que valor tiene el input
-        run: echo ${{ inputs.nombre }} - ${{ inputs.edad }}
-      - name: Retorna Ref - Repository - Issue title
-        run: echo ${{ github.ref }} - ${{ github.repository }} - ${{ github.event.issue.title }}
+        run: echo "${{ inputs.nombre }} - ${{ inputs.edad }}"
