@@ -21,6 +21,10 @@ jobs:
     steps:
       - name: Correr script
         run: echo ${{ inputs.nombre }} es mayor de edad
+      - name: Mostrar nombre de evento
+        run: echo ${{ github.event_name }}
+      - name: Mostrar usuario
+        run: echo ${{ github.actor }}
 
   menor:
     if: ${{ inputs.edad < 18 }}
