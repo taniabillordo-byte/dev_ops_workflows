@@ -50,6 +50,8 @@ jobs:
         run: echo "Ambiente - ${{ env.AMBIENTE }} - ${{ env.REGION }}"
       - name: Mostrar variable de entorno
         run: echo "Home - $HOME "
+      - name: Mostrar variable SECRETS
+        run: echo "Secrets - ${{ secrets.PASSWORD }} "
 
   mayor:
     if: ${{ inputs.edad >= 18 }}
